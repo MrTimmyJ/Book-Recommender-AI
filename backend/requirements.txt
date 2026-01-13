@@ -1,0 +1,21 @@
+Flask==2.3.3
+Flask-CORS==4.0.0
+sentence-transformers==2.2.2
+requests==2.31.0
+numpy==1.24.3
+gunicorn==21.2.0
+
+# Create main project folder
+mkdir book-recommender
+cd book-recommender
+
+# Create backend folder
+mkdir backend
+cd backend
+
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install dependencies
+pip install flask flask-cors sentence-transformers requests numpy

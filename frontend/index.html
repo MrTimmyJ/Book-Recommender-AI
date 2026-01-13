@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novel Discover - AI Book Recommendations</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-book-reader"></i> Novel Discover</h1>
+            <p>AI-powered book recommendations in seconds</p>
+        </header>
+
+        <!-- Main Search -->
+        <main class="main-search">
+            <div class="search-card">
+                <label for="bookInput" class="search-label">
+                    <i class="fas fa-search"></i> What's the last book you enjoyed?
+                </label>
+                <div class="search-input-group">
+                    <div class="input-wrapper">
+                        <i class="fas fa-book search-icon"></i>
+                        <input 
+                            type="text" 
+                            id="bookInput" 
+                            placeholder="Example: 'The Hobbit by J.R.R. Tolkien'"
+                            class="search-input"
+                            aria-label="Enter book title"
+                        >
+                    </div>
+                    <button id="recommendBtn" class="search-btn">
+                        <i class="fas fa-magic"></i>
+                        <span>Find Similar</span>
+                    </button>
+                </div>
+                <div class="search-hint">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>For best results, include the author's name</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- Loading State -->
+        <div id="loading" class="loading-state hidden">
+            <div class="spinner"></div>
+            <p>AI is analyzing your book...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="error" class="error-state hidden">
+            <div class="error-content">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div class="error-text">
+                    <h3>Oops! Something went wrong</h3>
+                    <p id="errorMessage"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="hidden">
+            <!-- Original Book -->
+            <div class="original-book">
+                <div class="original-book-header">
+                    <i class="fas fa-bookmark"></i>
+                    <h3>Your Book</h3>
+                </div>
+                <h4 id="userBookTitle" class="original-book-title">Book Title</h4>
+                <p id="userBookAuthor" class="original-book-author">by Author Name</p>
+                <p id="userBookDescription" class="original-book-desc">Description will appear here...</p>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="recommendations-header">
+                <h2>AI Recommendations</h2>
+                <p>Based on similar themes, genres, and writing styles</p>
+            </div>
+
+            <div class="recommendations-grid">
+                <!-- Top Pick -->
+                <div class="recommendation-card featured">
+                    <div class="card-label">
+                        <i class="fas fa-crown"></i>
+                        <span>TOP PICK</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="book-cover-container">
+                            <img id="topPickImage" class="book-cover" alt="Book cover" onerror="this.style.display='none'">
+                            <div class="cover-placeholder" id="topPickPlaceholder">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                        </div>
+                        <div class="book-info">
+                            <h4 id="topPickTitle" class="book-title">Book Title</h4>
+                            <p id="topPickAuthor" class="book-author">by Author</p>
+                            <div class="book-meta">
+                                <span id="topPickRating" class="rating">
+                                    <i class="fas fa-star"></i> 4.5/5
+                                </span>
+                                <span id="topPickGenre" class="genre-tag">Genre</span>
+                            </div>
+                            <p id="topPickDescription" class="book-description">
+                                Book description will appear here...
+                            </p>
+                            <div class="card-footer">
+                                <span class="rec-reason"><i class="fas fa-bolt"></i> Best match for you</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Similar Genre -->
+                <div class="recommendation-card">
+                    <div class="card-label">
+                        <i class="fas fa-layer-group"></i>
+                        <span>SIMILAR GENRE</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="book-cover-container">
+                            <img id="sameGenreImage" class="book-cover" alt="Book cover" onerror="this.style.display='none'">
+                            <div class="cover-placeholder" id="sameGenrePlaceholder">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                        </div>
+                        <div class="book-info">
+                            <h4 id="sameGenreTitle" class="book-title">Book Title</h4>
+                            <p id="sameGenreAuthor" class="book-author">by Author</p>
+                            <div class="book-meta">
+                                <span id="sameGenreRating" class="rating">
+                                    <i class="fas fa-star"></i> 4.5/5
+                                </span>
+                                <span id="sameGenreGenre" class="genre-tag">Genre</span>
+                            </div>
+                            <p id="sameGenreDescription" class="book-description">
+                                Book description will appear here...
+                            </p>
+                            <div class="card-footer">
+                                <span class="rec-reason"><i class="fas fa-palette"></i> Different style, same genre</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Different Vibe -->
+                <div class="recommendation-card">
+                    <div class="card-label">
+                        <i class="fas fa-random"></i>
+                        <span>NEW VIBE</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="book-cover-container">
+                            <img id="diffVibeImage" class="book-cover" alt="Book cover" onerror="this.style.display='none'">
+                            <div class="cover-placeholder" id="diffVibePlaceholder">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                        </div>
+                        <div class="book-info">
+                            <h4 id="diffVibeTitle" class="book-title">Book Title</h4>
+                            <p id="diffVibeAuthor" class="book-author">by Author</p>
+                            <div class="book-meta">
+                                <span id="diffVibeRating" class="rating">
+                                    <i class="fas fa-star"></i> 4.5/5
+                                </span>
+                                <span id="diffVibeGenre" class="genre-tag">Genre</span>
+                            </div>
+                            <p id="diffVibeDescription" class="book-description">
+                                Book description will appear here...
+                            </p>
+                            <div class="card-footer">
+                                <span class="rec-reason"><i class="fas fa-compass"></i> Different genre, similar appeal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Try Another Search -->
+            <div class="try-another">
+                <button id="tryAnotherBtn" class="secondary-btn">
+                    <i class="fas fa-redo"></i> Try Another Book
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-book-reader"></i> Novel Discover</h3>
+                    <p>AI-powered book recommendations</p>
+                </div>
+                <div class="footer-tech">
+                    <p><strong>Powered by:</strong></p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">🤖 AI Similarity</span>
+                        <span class="tech-tag">📚 Google Books API</span>
+                        <span class="tech-tag">⚡ Real-time Analysis</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Novel Discover | Built with AI and ❤️ for book lovers</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

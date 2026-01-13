@@ -79,6 +79,11 @@ book-recommender/ <br>
     pip install -r requirements.txt
     python app.py
 
+3. Host locally:
+
+   Backend: python app.py
+   Frontend: python3 -m http.server 8000
+
 🪪 License
 
 © 2026 Timothy Johnson. All Rights Reserved.<br>

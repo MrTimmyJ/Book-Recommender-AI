@@ -64,9 +64,20 @@ book-recommender/ <br>
 
 ### Installation
 
-cd book-recommender/backend
-pip install -r requirements.txt
-python app.py
+1. Clone the repository:
+
+    git clone https://github.com/MrTimmyJ/book-recommender.git
+    cd book-recommender
+
+2. Install dependencies:
+
+    cd backend
+    python3 -m venv venv
+    source venv/bin/activate  # Mac/Linux
+    # venv\Scripts\activate   # Windows
+    
+    pip install -r requirements.txt
+    python app.py
 
 🪪 License
 

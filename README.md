@@ -1,4 +1,4 @@
-# Novel Discover - AI Book Recommender
+# Next Novel - AI Book Recommender
 
 A modern Flask application with AI-powered book recommendations using Google Books API.
 
@@ -7,7 +7,7 @@ A modern Flask application with AI-powered book recommendations using Google Boo
 
 ## 🌟 Overview
 
-Novel Discover is an intelligent book recommendation system that uses AI-powered similarity analysis to suggest books based on your reading preferences. Unlike basic keyword matching, it analyzes themes, genres, and writing styles to provide curated recommendations.
+Next Novel is an intelligent book recommendation system that uses AI-powered similarity analysis to suggest books based on your reading preferences. Unlike basic keyword matching, it analyzes themes, genres, and writing styles to provide curated recommendations.
 
 ## ✨ Features
 

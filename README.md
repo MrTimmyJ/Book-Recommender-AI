@@ -5,6 +5,9 @@ A modern Flask application with AI-powered book recommendations using Google Boo
 **Author**: Timothy Johnson  
 **Date**: January 2026
 
+**Live Demo**: 
+- 📚 **Next Novel**: http://143.198.51.64/next-novel/
+
 ## 🌟 Overview
 
 Next Novel is an intelligent book recommendation system that uses AI-powered similarity analysis to suggest books based on your reading preferences. Unlike basic keyword matching, it analyzes themes, genres, and writing styles to provide curated recommendations.
